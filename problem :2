@@ -1,0 +1,33 @@
+#include <iostream>
+#include <cmath>  
+#include <iomanip> 
+
+using namespace std;
+
+int main() {
+    double lambdaGreen = 530.0;
+    double thetaGreen = 65.0;   
+    int mGreen = 3;             
+
+
+    double thetaGreenRad = thetaGreen * M_PI / 180.0;
+
+    double d = (mGreen * lambdaGreen) / sin(thetaGreenRad);
+
+    double lambdaRed = 700.0; 
+    int mRed = 2;
+
+    double sinThetaRed = (mRed * lambdaRed) / d;
+
+    if (sinThetaRed <= 1.0) {
+        double thetaRedRad = asin(sinThetaRed); 
+        double thetaRedDeg = thetaRedRad * 180.0 / M_PI;
+
+        cout << fixed << setprecision(2);
+        cout << "Second-order red light appears at angle: " << thetaRedDeg << " degrees." << endl;
+    } else {
+        cout << "No solution. sin(θ) > 1, which is not possible." << endl;
+    }
+
+    return 0;
+}
