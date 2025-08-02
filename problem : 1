@@ -1,0 +1,41 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+    double wavelength; 
+    double a1, a2, a3; 
+    double theta1, theta2, theta3;
+
+    cout << "Enter light wavelength (in nm): ";
+    cin >> wavelength;
+
+    if (wavelength < 380 || wavelength > 750) {
+        cout << "Out of range. Please enter a number between 380 and 750.\n";
+        return 0;
+    }
+
+    cout << "Enter first slit width (in µm): ";
+    cin >> a1;
+    cout << "Enter second slit width (in µm): ";
+    cin >> a2;
+    cout << "Enter third slit width (in µm): ";
+    cin >> a3;
+
+    theta1 = asin((wavelength * 1e-9) / (a1 * 1e-6)) * (180.0 / M_PI);
+    theta2 = asin((wavelength * 1e-9) / (a2 * 1e-6)) * (180.0 / M_PI);
+    theta3 = asin((wavelength * 1e-9) / (a3 * 1e-6)) * (180.0 / M_PI);
+
+    cout << "Angle for slit 1: " << theta1 << " degrees\n";
+    cout << "Angle for slit 2: " << theta2 << " degrees\n";
+    cout << "Angle for slit 3: " << theta3 << " degrees\n";
+
+    if (theta1 > theta2 && theta1 > theta3)
+        cout << "Slit 1 bent the light most.\n";
+    else if (theta2 > theta3)
+        cout << "Slit 2 bent the light most.\n";
+    else
+        cout << "Slit 3 bent the light most.\n";
+
+    return 0;
+}
